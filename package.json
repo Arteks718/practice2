@@ -1,0 +1,22 @@
+{
+  "name": "practice2",
+  "version": "1.0.0",
+  "description": "node js for practice",
+  "main": "index.js",
+  "scripts": {
+    "start": "http-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Arteks718/practice2.git"
+  },
+  "author": "Arteks718",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Arteks718/practice2/issues"
+  },
+  "homepage": "https://github.com/Arteks718/practice2#readme",
+  "dependencies": {
+    "http-server": "^14.1.1"
+  }
+}
