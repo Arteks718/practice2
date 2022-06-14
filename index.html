@@ -11,10 +11,6 @@
     <link rel="stylesheet" href="css/tomatoAll.css">
     <link rel="manifest" href="mainfest.json">
     <link rel="icon" href="images/test.png">
-
-    
-    
-
     <title>Homepage</title>
 </head>
 
@@ -63,7 +59,7 @@
                                     <a href="tomatoAll.html">Products</a>
                                 </li>
                                 <li class="menu__item">
-                                    <a href="catdogAPI.html">Cat-Dog</a>
+                                    <a href="catdogAPI.html">Capital</a>
                                 </li>
                                 <li class="menu__item">
                                     <a href="#">R&D</a>
@@ -83,8 +79,9 @@
                         <div class="title_text">
                             <h1>Agridera Seeds and Agriculture Ltd</h1>
                         </div>
-                        <button>READ MORE</button>
+                        <button id="read">READ MORE</button>
                     </div>
+                    <button class="subscribe-for-push">SUBSCRIBE FOR PUSH NOTIFICATIONS</button>
                 </div>
             </div>
         </div>
@@ -292,6 +289,7 @@
             </div>
         </div>
     </footer>
+    
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
@@ -301,12 +299,40 @@
     <script src="js/menu.js"></script> 
     <link rel="mainfest" href="/mainfest.json">
     <script>
-        if ('serviceWorker' in navigator) {
-           navigator.serviceWorker
-           .register('/sw.js')
-           .then(function() {
-               console.log('Service worker registered!');
-           });
-       }
+        function askPermission() {
+            return new Promise(function(resolve, reject) {
+                const permissionResult = Notification.requestPermission(function(result) {
+                    resolve(result);
+                });
+
+                if (permissionResult) {
+                    permissionResult.then(resolve, reject);
+                }
+            })
+            .then(function(permissionResult) {
+                if (permissionResult !== 'granted' ) {
+                    throw new Error('We weren\'t granted permission.');
+                }
+            });
+        }
+
+        if('serviceWorker' in navigator) {
+            navigator.serviceWorker
+            .register('/sw.js')
+            .then(function() {
+                console.log('Service worker registered!');
+            });
+
+            navigator.serviceWorker.ready.then(registration => {
+                if ('PushManager' in window) {
+                    document.querySelector('button.subscribe-for-push')
+                        .addEventListener('click', () => {
+                            if (confirm("Ви згодні отримувати повідомлення?") == true) {
+                                askPermission();
+                            }
+                        });
+                }
+            })
+        }
     </script>
 </html>

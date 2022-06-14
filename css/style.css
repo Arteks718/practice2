@@ -5,7 +5,7 @@ header {
 }
 
 .title {
-    padding: 240px 0 180px 0;
+    padding: 240px 0 100px 0;
 }
 
 .title h1{
@@ -24,7 +24,7 @@ header {
     color: #735440;
 }
 
-.title button {
+.title button{
     font-family: 'Roboto Slab';
     font-weight: 400;
     margin-top: 75px;
@@ -42,6 +42,22 @@ header {
     transition: 0.4s linear;
 }
 
+.subscribe-for-push{
+    font-family: 'Roboto Slab';
+    font-weight: 400;
+    height: 40px;
+    background-color: #324950;
+    color: #fff;
+    border: none;
+    font-size: 16px;
+    transition: 0.4s linear;
+    margin-bottom: 60px;
+}
+
+.subscribe-for-push:hover{
+    background-color: white;
+    color: #324950;
+}
 
 .main-back{
     background-color: #fff;
